@@ -6,8 +6,16 @@ export function add(input: string): number {
     const parts = input.split("\n");
     const delimiterPart = parts[0];
     if (delimiterPart.startsWith("//[") && delimiterPart.endsWith("]")) {
+      const delimiterPattern = /\[(.*?)\]/g;
+      const delimiters = [];
+      let match;
+      while ((match = delimiterPattern.exec(delimiterPart)) !== null) {
+        delimiters.push(match[1]);
+      }
       delimiter = new RegExp(
-        delimiterPart.slice(3, -1).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+        delimiters
+          .map((d) => d.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+          .join("|")
       );
     } else {
       delimiter = new RegExp(delimiterPart[2]);
