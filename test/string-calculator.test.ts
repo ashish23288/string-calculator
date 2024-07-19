@@ -13,11 +13,15 @@ describe("StringCalculator", () => {
     expect(add("1,2")).toBe(3);
   });
 
-  test('should allow the add method to handle an unknown amount of numbers', () => {
-    expect(add('1,2,3')).toBe(6);
-  });  
+  test("should allow the add method to handle an unknown amount of numbers", () => {
+    expect(add("1,2,3")).toBe(6);
+  });
 
   test("should allow the add method to handle new lines between numbers", () => {
     expect(add("1\n2,3")).toBe(6);
+  });
+
+  test('should support different delimiters', () => {
+    expect(add('//;\n1;2')).toBe(3);
   });
 });
