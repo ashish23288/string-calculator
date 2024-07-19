@@ -15,5 +15,6 @@ export function add(input: string): number {
     throw new Error(`Negatives not allowed: ${negatives.join(", ")}`);
   }
 
-  return numbers.reduce((sum, current) => sum + current, 0);
+  const validNumbers = numbers.filter((num) => num <= 1000);
+  return validNumbers.reduce((sum, current) => sum + current, 0);
 }
