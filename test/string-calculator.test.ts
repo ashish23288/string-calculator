@@ -32,4 +32,8 @@ describe("StringCalculator", () => {
   test("should ignore numbers bigger than 1000", () => {
     expect(add("2,1001")).toBe(2);
   });
+
+  test("should support delimiters of any length", () => {
+    expect(add("//[***]\n1***2***3")).toBe(6);
+  });
 });
